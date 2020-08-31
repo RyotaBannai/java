@@ -19,7 +19,7 @@ System.out.println(2200000000L) // long
     - `double -> float -> long -> int -> char -> short -> byte`
 - long 型の値を float 型 や double 型 に変換した場合、有効桁数を超えた部分については元の値と異なることに注意。[ref](https://www.javadrive.jp/start/cast/index2.html)
 
-```texts
+```text
 char   0～65535
 short  -32768～32767
 char   0～65535
@@ -29,7 +29,7 @@ byte   -128～128
 #### Array
 
 - 基本配列数は固定。可変長を使用したいときは、`ArrayList` を使う: `配列(固定長)`と `ArrayList(可変長)`
-- 配列を大きくしたい場合 : 別の配列を用意して、コピーするとよい。
+- 配列を大きくしたい場合: 別の配列を用意して、コピーするとよい。
 
 ```java
 int[] originalArray = new int[10]
@@ -86,3 +86,12 @@ private static void disp(int... num){
   }
 }
 ```
+
+### Regex
+
+- `^` が行の先頭にマッチしたのに対して `\A` は`文字列の`先頭にマッチ `String reg = "\\Apeople";`
+- `文字列の`末尾とマッチさせたいなら `\Z` `String reg = "people\\Z";`
+  - 文の末尾に`行末文字`があった場合には行末文字を`除いた`後の行末にマッチ(どのような文字が行末文字として扱われるのか確認)
+- `単語境界/ 非単語境界( ¥b , ¥B )`
+  - `¥b`が単語の境界にマッチ
+  - `¥B`は単語の境界以外にマッチ
