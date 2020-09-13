@@ -1,3 +1,5 @@
+package duck;
+
 import quack_behavior.QuackBehavior;
 import fly_behavior.FlyBehavior;
 
