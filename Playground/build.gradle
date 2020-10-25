@@ -8,7 +8,7 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 10
 
-mainClassName = 'HelloWorld'
+mainClassName = 'basics.future.TestForkJoin'
 
 repositories {
     mavenCentral()
@@ -19,4 +19,6 @@ dependencies {
 
     // Add library
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+    // 1. Use Guava in your implementation only:
+    implementation("com.google.guava:guava:30.0-jre")
 }
