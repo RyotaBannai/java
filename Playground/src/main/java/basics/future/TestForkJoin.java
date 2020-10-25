@@ -23,7 +23,7 @@ public class TestForkJoin {
         }
 
         @Override
-        protected Integer compute() {
+        protected Integer compute()  {
             System.out.println(n * n);
             if (n <= 1) return n;
 

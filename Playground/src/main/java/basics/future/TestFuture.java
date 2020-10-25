@@ -19,7 +19,6 @@ public class TestFuture {
             System.out.println("Calculating...");
             try {
                 Thread.sleep(200);
-
             } catch (InterruptedException e) {
             }
         }

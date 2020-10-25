@@ -8,7 +8,7 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 10
 
-mainClassName = 'basics.future.TestForkJoin'
+mainClassName = 'basics.future.TestMultipleFutures'
 
 repositories {
     mavenCentral()
