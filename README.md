@@ -1,5 +1,15 @@
 ### Memo
 
+#### Objects#requireNonNull
+
+- null check を簡潔に行う. prop が null の場合 NPE を返す。[ref](https://saiya-moebius.hatenablog.com/entry/2014/08/17/175510)
+
+```java
+public Hoge(String huga){
+  this.huga = Objects.requireNonNull(huga);
+  }
+```
+
 - 数値リテラルにサフィックスを付けて型を指定する
 
 ```java

@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'Playground'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 10
+
+mainClassName = 'HelloWorld'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // Add library
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+}

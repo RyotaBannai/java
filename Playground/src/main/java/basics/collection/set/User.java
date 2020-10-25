@@ -1,3 +1,5 @@
+package basics.collection.set;
+
 class User {
     private int id;
     private String name;
@@ -22,7 +24,7 @@ class User {
         }
 
         User otherUser = (User) other;
-        if (this.id == otherUser.getId()) {
+        if (this.id == otherUser.id) {
             return true;
         }
         return false;
