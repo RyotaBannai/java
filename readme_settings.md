@@ -11,3 +11,10 @@ This is what worked for me (Intellij Idea 2018.1.2):
 
 3) Re-run the gradle task
 ```
+- `erro:java:invalid source release 10` のようなエラーが出たら、project の sdk の設定に問題がある。以下のように `Language Level` と `Module SDK` を変更する.
+```java
+File -> Project Structure -> Project Settings
+File -> Project Structure -> Module Settings -> Tab: Sources: Language Level
+File -> Project Structure -> Module Settings -> Tab: Dependencies: Module SDK
+File -> Settings -> Compiler -> Java Compiler -> Target bytecode version
+```

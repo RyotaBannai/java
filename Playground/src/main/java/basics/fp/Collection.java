@@ -7,11 +7,9 @@ import java.util.function.Consumer;
 public class Collection {
     public static void main(String[] args) {
         final List<String> friends = Arrays.asList("Brian", "Nate", "Neal", "Raju", "Sara", "Scott");
-        friends.forEach(new Consumer<String>() {
-            @Override
-            public void accept(String name) {
-                System.out.println(name);
-            }
-        });
+        // 匿名 Consumer インスタンス を lambda に変更する
+        // 型推論も取り除かれる (final String name)
+//        friends.forEach(name -> System.out.println(name));
+        friends.forEach(System.out::println);
     }
 }

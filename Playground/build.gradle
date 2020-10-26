@@ -8,7 +8,7 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 10
 
-mainClassName = 'basics.future.TestMultipleFutures'
+mainClassName = 'basics.fp.Collection'
 
 repositories {
     mavenCentral()
