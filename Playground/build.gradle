@@ -8,8 +8,8 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 10
 
-//mainClassName = 'basics.fp.Collection'
-mainClassName = 'effective_java.other.CovariantReturnTypes'
+mainClassName = 'basics.fp.Collection'
+//mainClassName = 'effective_java.other.CovariantReturnTypes'
 
 repositories {
     mavenCentral()

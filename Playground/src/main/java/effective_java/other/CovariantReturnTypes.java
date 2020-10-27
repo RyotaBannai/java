@@ -3,6 +3,9 @@ package effective_java.other;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+/*
+ * ref: https://www.sakatakoichi.com/entry/20080805/1217925680
+ * */
 public class CovariantReturnTypes {
     public interface ReturnNumber {
         Number value();
@@ -21,10 +24,10 @@ public class CovariantReturnTypes {
             System.out.println("\tisSynthetic:" + method.isSynthetic());
             System.out.println("\tisBridge:" + method.isBridge());
             /*
-            * public java.lang.Number effective_java.other.CovariantReturnTypes$ReturnInterger.value()
-            *     isSynthetic:true
-            *     isBridge:true
-            * */
+             * public java.lang.Number effective_java.other.CovariantReturnTypes$ReturnInterger.value()
+             *     isSynthetic:true
+             *     isBridge:true
+             * */
         });
     }
 }
