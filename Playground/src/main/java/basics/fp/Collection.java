@@ -2,6 +2,7 @@ package basics.fp;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -37,5 +38,20 @@ public class Collection {
                 .filter(startsWithLetter.apply("N"))
                 .forEach(System.out::println);
 
+        // stream の型を変える
+        System.out.println("the length of all friends name is: " +
+                friends.stream()
+                        .mapToInt(name -> name.length())
+                        .sum());
+
+        // get the longest name and keep first one if more than two
+        final Optional<String> aLongName = friends.stream()
+                .reduce((name1, name2) -> name1.length() >= name2.length() ? name1 : name2); // name1 に前の処理の結果が入る
+        aLongName.ifPresent(name -> System.out.println(String.format("The longest name is %s", name)));
+
+        // join method が良い
+        System.out.println(friends.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.joining(", ")));
     }
 }
