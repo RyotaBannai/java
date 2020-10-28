@@ -8,6 +8,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.joining;
+
 public class Collection {
     public static void main(String[] args) {
         final List<String> friends = Arrays.asList("Brian", "Nate", "Neal", "Raju", "Sara", "Scott");
@@ -52,6 +54,6 @@ public class Collection {
         // join method が良い
         System.out.println(friends.stream()
                 .map(String::toUpperCase)
-                .collect(Collectors.joining(", ")));
+                .collect(joining(", ")));
     }
 }
