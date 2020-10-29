@@ -2,15 +2,13 @@ package basics.fp;
 
 import basics.fp.JavaBean.Person;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import javax.swing.text.html.Option;
+import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.mapping;
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.*;
 
 public class Collector {
     public static void main(String[] args) {
@@ -45,6 +43,16 @@ public class Collector {
                         .collect(
                                 groupingBy(Person::getAge, mapping(Person::getName, toList())));
         System.out.println("Group by age and list their name:" + peopleNameByAge);
+
+
+        // grouping and reducing.
+        Comparator<Person> byAge = comparing(Person::getAge);
+        Map<Character, Optional<Person>> oldestPersonOfEachLetter =
+                people.stream()
+                        .collect(groupingBy(person -> person.getName().charAt(0),
+                                reducing(BinaryOperator.maxBy(byAge))));
+        System.out.println("Oldest person of each letter:");
+        System.out.println(oldestPersonOfEachLetter);
     }
 
 }
