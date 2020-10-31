@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.stream.Stream;
 
-public class LambdaException {
+public class ARM {
     static class FileWriterSample implements AutoCloseable { // static にしないと main で静的に呼び出せない...
         private FileWriter writer;
 
