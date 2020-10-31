@@ -1,36 +1,52 @@
+package basics.fp.designWithFp;
+
+import java.util.function.Consumer;
+
 public class Mailer {
-    public Mailer from(final String address) {
+    private Mailer() {
+    }
+
+    private Mailer from(final String address) {
         System.out.println("set up from address");
         return this;
     }
 
-    public Mailer to(final String address) {
+    private Mailer to(final String address) {
         System.out.println("set up to address");
         return this;
     }
 
-    public Mailer subject(final String address) {
+    private Mailer subject(final String address) {
         System.out.println("set subject");
         return this;
     }
 
-    public Mailer body(final String address) {
+    private Mailer body(final String address) {
         System.out.println("set body");
         return this;
     }
 
-    public Mailer send() {
+    public static void send(final Consumer<Mailer> block) {
+        /**
+         * Mailer のインスタンスはこのメソッド内になるため、send メソッドが終了したら、参照は消える.
+         * スコープを取得してスコープないで作業して、返す、パターンを"ローンパターン"という.
+         * */
+        final Mailer mailer = new Mailer();
+        block.accept(mailer);
         System.out.println("sending...");
-        return this;
     }
 
+    /**
+     * コンストラクタを private にして直接オブジェクトを生成するのを禁止（new は流暢さや可読性が低くなるため）
+     * オブジェクトの参照がブロック内になり、send メソッドの実行が終了すると参照が消える
+     */
     public static void main(String[] args) {
-        new Mailer()
+        Mailer.send(mailer -> mailer
                 .from("test_from@gmail.com")
                 .to("test_to@gmail.com")
                 .subject("subject")
                 .body("body")
-                .send()
+        );
 
     }
 }
