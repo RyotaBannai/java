@@ -17,6 +17,7 @@ public class EAM {
         }
 
         public void writeStuff(final String message) throws IOException {
+//            throw new IOException(); // test purpose.
             writer.write(message);
         }
 
