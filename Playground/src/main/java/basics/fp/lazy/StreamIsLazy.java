@@ -24,7 +24,7 @@ public class StreamIsLazy {
     public static void main(String[] args) {
         final String firstNameWith3Letters =
                 names.stream()
-                        .filter(name -> length(name) == 3)
+                        .filter(name -> name.length() == 3)
                         .map(StreamIsLazy::toUpper)
                         .findFirst()
                         .orElse("no one");
