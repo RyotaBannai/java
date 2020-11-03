@@ -16,7 +16,12 @@ public class AlphaVantage {
             final String data = reader.lines().skip(1).findFirst().get(); // skip: skips column titles.
 //            reader.lines().forEach(System.out::println);
             final String[] dataItems = data.split(",");
-            return new BigDecimal(dataItems[dataItems.length - 2]); // time, high, enter, exit, low, volume
+            if (dataItems.length < 2)
+                return new BigDecimal(0);
+            else {
+                System.out.println(ticker + ": " + dataItems[dataItems.length - 2]);
+                return new BigDecimal(dataItems[dataItems.length - 2]); // time, high, enter, exit, low, volume
+            }
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
