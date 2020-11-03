@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class AlphaVantage {
     // https://www.alphavantage.co/support/#api-key
-    public static BigDecimal getPRice(final String ticker) {
+    public static BigDecimal getPrice(final String ticker) {
         try {
             final URL url = new URL(
                     String.format("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=%s&interval=5min&apikey=%s&datatype=csv", ticker, "8HXZJO3QC6ZHZQ3L"));
