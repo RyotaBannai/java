@@ -7,12 +7,12 @@ import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
-public class Csv {
+public class StockPrices {
     public static void main(String[] args) {
         System.out.println(getPrice("AAPL"));
     }
 
-    public StockInfo getStockInfo(final String symbol){
+    public static StockInfo getStockInfo(final String symbol){
         return new StockInfo(symbol, getPrice(symbol));
     }
 
@@ -40,9 +40,9 @@ public class Csv {
         return store;
     }
 
-    private static class StockInfo {
-        private final String ticker;
-        private final BigDecimal price;
+    public static class StockInfo {
+        public final String ticker;
+        public final BigDecimal price;
 
         public StockInfo(final String symbol, final BigDecimal thePrice) {
             ticker = symbol;
