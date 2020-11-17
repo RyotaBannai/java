@@ -117,8 +117,10 @@ private static void disp(int... num){
 - `後方参照` ではバックスラッシュとインデックスを組み合わせる `\1`
 - [正規表現を使った置換](https://www.javadrive.jp/start/regex/replace/)
 
-- `共変戻り値(型)`:メソッドをオーバーライドするときに、オーバーライドするメソッドの戻り値の型が、オーバーライドされたメソッドの戻り値の型のサブタイプになることを許可すること.
+- `共変戻り値(型)`（covariant return type）:メソッドをオーバーライドするときに、オーバーライドするメソッドの戻り値の型が、オーバーライドされたメソッドの戻り値の型のサブタイプになることを許可すること.（共変の反対は `反変（contravariant）`と言うが、Java とは無関係）
   - [reference](https://blogs.oracle.com/sundararajan/covariant-return-types-in-java)
+  - インターフェースとクラス間だけでなく、複数のインターフェース間とクラスでも可
+
 ```java
 // class は Object のサブクラス
 public class MyFoo{
@@ -127,9 +129,52 @@ public class MyFoo{
        // Implementation
    }
 }
+// another example
+public class Sample{ // 正しく動作させるには Cloneable を implements する
+  private String value;
+
+  public Sample(String value){
+    this.value = value;
+  }
+
+  public String toString(){
+    return value;
+  }
+
+  public Object clone() throws CloneNotSupportedException{
+    // error Object#clone() の中でjava.lang.CloneNotSupportedException が発生。
+    // Object#clone()を呼び出している Sample クラスが Cloneable を実装していないため！
+    return super.clone();
+  }
+}
+Sample s1 = new Sample("abc");
+Sample s2 = (Sample)s1.clone(); // error
+System.out.println(s2);
+
+// 共変戻り値を使うと...
+
+public class CloneSample implements Cloneable{
+  @Override
+  public CloneSample clone() throws CloneNotSupportedException { // 戻り値にサブクラスを指定.
+    return (CloneSample) super.clone();
+  }
+}
+
+CloneSample obj = new CloneSample();
+CloneSample clone = obj.clone(); // キャスト不要
+
 ```
+
+- `clone`
+
+  - 複製が生成される際、新しいオブジェクトが作られるけれども、そのコンストラクターが呼ばれることは無い。
+  - コピー方法は、シャローコピー（shallow copy：浅いコピー）
+  - `shallow copy`: オブジェクトのフィールド（メンバー変数）がオブジェクト（参照型）である場合に、その参照をコピーするだけ。つまりフィールドのオブジェクトは、複製元と複製先で同じオブジェクトを指すことになる。
+  - `deep copy`:「フィールドのオブジェクト自身も複写する方式」を指す。
+    - ディープコピーを自動的に行うメソッドは用意されていないので、オブジェクトのディープコピーを作りたいのであれば、ディープコピー用のメソッドを自分で作る必要がある。
+
 - `合成メソッド`:`共変戻り値`を使ったときなど、`コンパイラが自動的にメソッドを作成することがある`。この自動的に作成したメソッドを合成メソッドという。
   - たとえば、共変戻り値を使ったときは、スーパークラスと同じ戻り値の型のメソッド(今までのオーバーライドのイメージ)がコンパイラによって作られる(戻り値の型を変えて実装したメソッドとは別に)。これが合成メソッド。
   - さらに、共変戻り値での合成メソッドは、`内部的には新たに戻り値の型を変えたメソッドに処理を委譲する`、という実装になっている。
   - `配列は共変なので、配列は共変戻り値に出来る`（ただし、たぶん推奨されない）。`総称型（List等）は共変ではない`ので、共変戻り値に出来ない
-  - 共変戻り値が指定できるのはあくまでサブクラス（派生クラス）なので、プリミティブ型は対象外。
+  - 共変戻り値が指定できるのはあくまでサブクラス（派生クラス）なので、`プリミティブ型は対象外`。
