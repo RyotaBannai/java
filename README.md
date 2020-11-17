@@ -118,8 +118,9 @@ private static void disp(int... num){
 - [正規表現を使った置換](https://www.javadrive.jp/start/regex/replace/)
 
 - `共変戻り値(型)`（covariant return type）:メソッドをオーバーライドするときに、オーバーライドするメソッドの戻り値の型が、オーバーライドされたメソッドの戻り値の型のサブタイプになることを許可すること.（共変の反対は `反変（contravariant）`と言うが、Java とは無関係）
-  - [reference](https://blogs.oracle.com/sundararajan/covariant-return-types-in-java)
   - インターフェースとクラス間だけでなく、複数のインターフェース間とクラスでも可
+  - [reference1](https://blogs.oracle.com/sundararajan/covariant-return-types-in-java)
+  - [reference2](https://www.ne.jp/asahi/hishidama/home/tech/java/covariant.html)
 
 ```java
 // class は Object のサブクラス
@@ -162,7 +163,7 @@ public class CloneSample implements Cloneable{
 
 CloneSample obj = new CloneSample();
 CloneSample clone = obj.clone(); // キャスト不要
-
+// 参考 https://www.ne.jp/asahi/hishidama/home/tech/java/clone.html#h2_covariant
 ```
 
 - `clone`
@@ -178,3 +179,16 @@ CloneSample clone = obj.clone(); // キャスト不要
   - さらに、共変戻り値での合成メソッドは、`内部的には新たに戻り値の型を変えたメソッドに処理を委譲する`、という実装になっている。
   - `配列は共変なので、配列は共変戻り値に出来る`（ただし、たぶん推奨されない）。`総称型（List等）は共変ではない`ので、共変戻り値に出来ない
   - 共変戻り値が指定できるのはあくまでサブクラス（派生クラス）なので、`プリミティブ型は対象外`。
+
+### (Auto)Boxing and Unboxing
+
+- `Boxing`: プリミティブ型（基本型）から参照(クラス型・ラッパークラス)型へ自動キャストする仕組み int -> Integer
+- `Unboxing`: ら参照(ラッパークラス)型からプリミティブ型へ自動キャストする仕組み Integer -> int
+- [ref](https://qiita.com/chihiro/items/870eca6e911fa5cd8e58)
+
+#### なぜ 参照型を使うか
+
+- Generics にはプリミティブ型は使えないため. (List, HashMap 等々) (これは、プリミティブ方が Object ではないため.)
+  - OptionalInt や IntStream とか一部直接扱える物があるが、int、long、double しかなくない.
+  - `List<Integer>`とかに入れていくときオートボクシングが発生しないため、速い。(その代わり、普通の四則演算とか、代入ではオートボクシングしまくりで遅い)
+- [ref](https://teratail.com/questions/59136)
