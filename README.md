@@ -189,6 +189,13 @@ CloneSample clone = obj.clone(); // キャスト不要
 #### なぜ 参照型を使うか
 
 - Generics にはプリミティブ型は使えないため. (List, HashMap 等々) (これは、プリミティブ方が Object ではないため.)
-  - OptionalInt や IntStream とか一部直接扱える物があるが、int、long、double しかなくない.
+  - OptionalInt や IntStream とか一部直接扱える物があるが、int、long、double しかない.
   - `List<Integer>`とかに入れていくときオートボクシングが発生しないため、速い。(その代わり、普通の四則演算とか、代入ではオートボクシングしまくりで遅い)
 - [ref](https://teratail.com/questions/59136)
+
+### リフレクション
+
+- Java 仮想マシン (Java VM) はそれぞれのオブジェクトに対して、常に実行時の型情報を追跡している。 型情報を追跡しているために、Java VM はそのオブジェクトの適切なメソッドを呼び出すことが可能
+  - その型情報を保持している特別なクラス → `Class クラス`
+  - すべてのオブジェクトの基底クラスとなる `java.lang.Object` クラスに、`getClass` メソッドがある。
+    - `getClass()` メソッドによってそのオブジェクトの `Class オブジェクト`を取得できる.
