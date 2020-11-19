@@ -2,6 +2,7 @@ package basics.reflections;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
+import java.lang.reflect.Method;
 
 public class Employee {
     String firstName;
@@ -16,8 +17,8 @@ public class Employee {
         return firstName;
     }
 
-    public void getLastName(String last_name) {
-        this.lastName = last_name;
+    public String getLastName() {
+        return lastName;
     }
 
     public static void main(String[] args) {
@@ -25,7 +26,7 @@ public class Employee {
         Class<? extends Employee> myClass = employee.getClass(); //
         System.out.println("Class name is: " + myClass.getName() + "\n Methods: ");
         Arrays.stream(myClass.getMethods())
-                .forEach(method -> {
+                .forEach((Method method) -> {
                     System.out.print(" " + method.getName() + "(");
                     Stream.of(method.getParameterTypes())
                             .forEach(param -> System.out.print(param.getName() + ","));
