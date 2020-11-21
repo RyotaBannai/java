@@ -9,6 +9,8 @@ public class MyReflectionFeatures {
     public static void main(String[] args) {
         try {
             useForName();
+            makeInstanceWithoutNew();
+            invokeMethod();
         } catch (ClassNotFoundException error) {
             error.getStackTrace();
         }
@@ -28,6 +30,21 @@ public class MyReflectionFeatures {
             System.out.println(employee.getLastName());
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException error) {
             error.getStackTrace();
+        }
+    }
+
+    private static void invokeMethod() throws ClassNotFoundException {
+        try {
+            Class<?> myClass = null;
+            myClass = Class.forName("basics.reflections.Employee");
+            Constructor constructor = myClass.getDeclaredConstructor(String.class, String.class);
+            Object myObject = constructor.newInstance("Mark", "Zuckerburg");
+            Method myMethod = myClass.getMethod("getLastName");
+            String myString = (String) myMethod.invoke(myObject); // 設定した method に対してインスタンスを渡す.
+            System.out.println(myString);
+
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException error) {
+            error.printStackTrace();
         }
     }
 }
