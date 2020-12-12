@@ -203,3 +203,13 @@ CloneSample clone = obj.clone(); // キャスト不要
 ### try-with-resources
 
 - why：`try-finally` では、finally でエラーが発生したとき場合、try で throw したエラーを覆い隠してしまうため、初めのエラーの原因が見えなくなってしまう。それに対し、`try-with-resources`は、try でエラーが発生した時にはその他のエラーを隠蔽して、隠蔽した旨をスタックトレースに表示するため、エラーの特定を容易にする。この隠蔽されたエラーは Throwable の `getSuppressed` メソッドでアクセスもできる。
+
+### Object@equals メソッド
+
+- `equals` を override する -> `論理的透過性`(logical equality)というオブジェクトの`同一性`とは異なる概念を提供したい時に使う.
+- Override する場合は、`同値関係`(equivalence relation)を厳守する
+  - `反射性`(reflective): x に対し x を渡したら true になること
+  - `対称性`(symmetric): x に y を渡して true なら、y に x を渡しても当然 true になること
+  - `推移性`(transitive): x に y を渡して true で、y に z を渡して true にならば、x に z, または、z に x を渡しても当然 true になること
+  - `整合性`(consistent): x に y を渡して true ならば、複数回渡しても常に true になること
+  - null でない参照値に対し null を渡した時には常に false を返す
