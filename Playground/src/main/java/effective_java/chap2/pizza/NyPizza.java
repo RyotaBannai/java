@@ -1,4 +1,4 @@
-package effective_java.chap1.pizza;
+package effective_java.chap2.pizza;
 
 public class NyPizza extends Pizza {
 

@@ -1,10 +1,8 @@
-package effective_java.chap1.pizza;
+package effective_java.chap2.pizza;
 
 import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
-
-import effective_java.chap1.NutritionFacts.Builder;
 
 public abstract class Pizza {
   public enum Topping {

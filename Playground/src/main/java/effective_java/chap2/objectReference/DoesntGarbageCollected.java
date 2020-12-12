@@ -1,4 +1,4 @@
-package effective_java.chap1.objectReference;
+package effective_java.chap2.objectReference;
 
 import java.util.Arrays;
 import java.util.EmptyStackException;

@@ -1,11 +1,11 @@
-package effective_java.chap1.test;
+package effective_java.chap2.test;
 
 import java.util.Objects;
 
-import effective_java.chap1.NutritionFacts;
-import effective_java.chap1.pizza.NyPizza;
-import effective_java.chap1.pizza.NyPizza.Size;
-import effective_java.chap1.pizza.Pizza.Topping;
+import effective_java.chap2.NutritionFacts;
+import effective_java.chap2.pizza.NyPizza;
+import effective_java.chap2.pizza.NyPizza.Size;
+import effective_java.chap2.pizza.Pizza.Topping;
 
 public class Main {
   public static void main(String[] args) {
