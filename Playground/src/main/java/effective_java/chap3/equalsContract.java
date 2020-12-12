@@ -1,6 +1,7 @@
 package effective_java.chap3;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class equalsContract {
     public static void main(String[] args) {
@@ -14,6 +15,8 @@ public class equalsContract {
 
         p(colorPoint1.equals(colorPoint2)); // true
         p(colorPoint1.equals(colorPoint3)); // false
+        p(colorPoint1.asPoint().equals(colorPoint2.asPoint())); // true
+        p(colorPoint1.asPoint().equals(colorPoint3.asPoint())); // false
     }
 
     /**
@@ -45,7 +48,7 @@ public class equalsContract {
                 return false;
             }
             ColorPoint colorPoint = (ColorPoint) o;
-            return colorPoint.point.equals(point) && colorPoint.color.equals(color);
+            return colorPoint.asPoint().equals(point) && colorPoint.color.equals(color);
         }
 
     }
@@ -87,6 +90,6 @@ public class equalsContract {
     }
 
     private static void p(Object... inputs) {
-        Arrays.stream(inputs).forEach(System.out::println);
+        Stream.of(inputs).forEach(System.out::println);
     }
 }

@@ -206,7 +206,7 @@ CloneSample clone = obj.clone(); // キャスト不要
 
 ### Object@equals メソッド
 
-- `equals` を override する -> `論理的透過性`(logical equality)というオブジェクトの`同一性`とは異なる概念を提供したい時に使う.
+- `equals` を override する -> `論理的等価性`(logical equality)というオブジェクトの`同一性`とは異なる概念を比較したい時に使う.
 - Override する場合は、`同値関係`(equivalence relation)を厳守する
   - `反射性`(reflective): x に対し x を渡したら true になること
   - `対称性`(symmetric): x に y を渡して true なら、y に x を渡しても当然 true になること
