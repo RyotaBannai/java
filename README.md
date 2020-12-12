@@ -199,3 +199,7 @@ CloneSample clone = obj.clone(); // キャスト不要
   - その型情報を保持している特別なクラス → `Class クラス`
   - すべてのオブジェクトの基底クラスとなる `java.lang.Object` クラスに、`getClass` メソッドがある。
     - `getClass()` メソッドによってそのオブジェクトの `Class オブジェクト`を取得できる.
+
+### try-with-resources
+
+- why：`try-finally` では、finally でエラーが発生したとき場合、try で throw したエラーを覆い隠してしまうため、初めのエラーの原因が見えなくなってしまう。それに対し、`try-with-resources`は、try でエラーが発生した時にはその他のエラーを隠蔽して、隠蔽した旨をスタックトレースに表示するため、エラーの特定を容易にする。この隠蔽されたエラーは Throwable の `getSuppressed` メソッドでアクセスもできる。
