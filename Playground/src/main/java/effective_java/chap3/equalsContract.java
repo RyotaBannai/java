@@ -20,7 +20,7 @@ public class equalsContract {
     }
 
     /**
-     * composite pattern の merit をここでも利用できる
+     * composite pattern の merit をここでも享受できる
      */
     private static class ColorPoint {
         private final Point point;
@@ -44,7 +44,10 @@ public class equalsContract {
          */
         @Override
         public boolean equals(Object o) {
-            if (!(o instanceof ColorPoint)) {
+            if (o == this) {
+                return true;
+            }
+            if (!(o instanceof ColorPoint)) { // 同時に non-nullity にも対応 // instanceof の第1オペランドが null だと false
                 return false;
             }
             ColorPoint colorPoint = (ColorPoint) o;
@@ -64,6 +67,9 @@ public class equalsContract {
 
         @Override
         public boolean equals(Object o) {
+            if (o == this) {
+                return true;
+            }
             if (!(o instanceof Point)) {
                 return false;
             }
@@ -81,6 +87,9 @@ public class equalsContract {
 
         @Override
         public boolean equals(Object o) {
+            if (o == this) {
+                return true;
+            }
             if (!(o instanceof Color)) {
                 return false;
             }
