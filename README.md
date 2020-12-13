@@ -212,4 +212,4 @@ CloneSample clone = obj.clone(); // キャスト不要
   - `対称性`(symmetric): x に y を渡して true なら、y に x を渡しても当然 true になること
   - `推移性`(transitive): x に y を渡して true で、y に z を渡して true にならば、x に z, または、z に x を渡しても当然 true になること
   - `整合性`(consistent): x に y を渡して true ならば、複数回渡しても常に true になること
-  - null でない参照値に対し null を渡した時には常に false を返す
+  - `非 null 性`(non-nullity): null でない参照値に対し null を渡した時には常に false を返す

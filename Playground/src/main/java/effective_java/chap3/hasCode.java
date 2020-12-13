@@ -15,8 +15,13 @@ public class hasCode {
         Map<PhoneNumber, String> m = new HashMap<>();
         m.put(new PhoneNumber(707, 867, 5309), "Jenny");
         p(m.get(new PhoneNumber(707, 867, 5309))); // null... why not Jenny!
+        // -> hashCode メソッドを追加したあとは、Jenny を返却するようになる
 
-        // hashCode メソッドを追加したあとは、Jenny を返却するようになる
+        p(new PhoneNumber(707, 867, 5309)); // -> 707-867-5309
+
+        Map<String, PhoneNumber> m2 = new HashMap<>();
+        m2.put("Jenny", new PhoneNumber(707, 867, 5309));
+        p(m2); // {Jenny=707-867-5309} -> readability is so great.
 
     }
 
@@ -63,6 +68,26 @@ public class hasCode {
             return pn.areaCode == areaCode
                     && pn.prefix == prefix
                     && pn.lineNum == lineNum;
+        }
+
+        /**
+         * この電話番号の文字列表現を返します。
+         * 文字列は"XXX-YYY-ZZZZ"の形式の12文字で構成され、
+         * XXXは市外局番、YYYは市内局番、ZZZZは回線番号です。
+         * （各大文字は1桁の数字を表しています）
+         * *
+         * この電話番号の三つの部分のどれかが、そのフィールドを埋めるには、
+         * 桁が少ない場合、そのフィールドの先頭が０で埋められます。
+         * 例えば、最後の４桁部分の番号が123だとしたら、文字列表現の最後の
+         * ４文字は、"0123"となります。
+         * *
+         * -> これくらい詳細に書く
+         * -> 「表現方法が変更されることがあります。」と添えておくと、
+         * 将来変更に依存しない実装を強制することができる。
+         */
+        @Override
+        public String toString() {
+            return String.format("%03d-%03d-%04d", areaCode, prefix, lineNum);
         }
     }
 
